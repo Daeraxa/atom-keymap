@@ -21,7 +21,7 @@
     "event-kit": "^1.0.0",
     "fs-plus": "^3.0.0",
     "grim": "^1.2.1",
-    "@pulsar-edit/keyboard-layout": "^3.0.4",
+    "@pulsar-edit/keyboard-layout": "^3.0.5",
     "@pulsar-edit/pathwatcher": "^9.0.2",
     "property-accessors": "^1",
     "season": "^6.0.2"
