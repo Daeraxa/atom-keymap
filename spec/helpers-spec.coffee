@@ -32,6 +32,14 @@ describe ".normalizeKeystrokes(keystrokes)", ->
     assert.equal(normalizeKeystrokes('- '), false)
     assert.equal(normalizeKeystrokes('a '), false)
 
+describe "CmdOrCtrl modifier in .normalizeKeystrokes(keystrokes)", ->
+  cmdOrCtrl = if process.platform is 'darwin' then 'cmd' else 'ctrl'
+
+  it "resolves CmdOrCtrl to cmd on darwin, ctrl on win32/linux", ->
+    assert.equal(normalizeKeystrokes('CmdOrCtrl-f'), "#{cmdOrCtrl}-f")
+    assert.equal(normalizeKeystrokes('CmdOrCtrl-shift-f'), "shift-#{cmdOrCtrl}-F")
+    assert.equal(normalizeKeystrokes('CmdOrCtrl-k CmdOrCtrl-d'), "#{cmdOrCtrl}-k #{cmdOrCtrl}-d")
+
 describe ".isModifierKeyup(keystroke)", ->
   it "returns true for single modifier keyups", ->
     assert.isTrue(isModifierKeyup('^ctrl'))
