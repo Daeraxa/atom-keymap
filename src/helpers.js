@@ -112,6 +112,9 @@ var normalizeKeystroke = function(keystroke) {
 
   for (let i = 0; i < keys.length; i++) {
     var key = keys[i];
+    if (key === 'cmdorctrl') {
+      key = process.platform === 'darwin' ? 'cmd' : 'ctrl';
+    }
     if (MODIFIERS.has(key)) {
       modifiers.add(key);
     } else {
