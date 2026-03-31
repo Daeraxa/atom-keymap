@@ -87,8 +87,6 @@ const slovakCmdCharactersForKeyCode = function(code, layout) {
 };
 
 exports.normalizeKeystrokes = function(keystrokes) {
-  const cmdOrCtrl = process.platform === 'darwin' ? 'cmd' : 'ctrl';
-  keystrokes = keystrokes.replace(/CmdOrCtrl/g, cmdOrCtrl);
   const normalizedKeystrokes = [];
   for (var keystroke of Array.from(keystrokes.split(WHITESPACE_REGEX))) {
     var normalizedKeystroke;
@@ -114,6 +112,9 @@ var normalizeKeystroke = function(keystroke) {
 
   for (let i = 0; i < keys.length; i++) {
     var key = keys[i];
+    if (key === 'cmdorctrl') {
+      key = process.platform === 'darwin' ? 'cmd' : 'ctrl';
+    }
     if (MODIFIERS.has(key)) {
       modifiers.add(key);
     } else {
